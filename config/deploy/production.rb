@@ -61,12 +61,24 @@
 #   }
 # config/deploy/production.rb
 
-server '3.82.244.58',
-  user: 'ec2-user',
-  roles: %w{app db web},
-  ssh_options: {
-    keys: ['C:/Users/DELL/Downloads/Ruby-assign.pem'],  
-    forward_agent: false,
-    auth_methods: %w(publickey),
-    verify_host_key: :secure
-  }
+# server '3.82.244.58',
+#   user: 'ec2-user',
+#   roles: %w{app db web},
+#   ssh_options: {
+#     keys: ['C:/Users/DELL/Downloads/Ruby-assign.pem'],  
+#     forward_agent: false,
+#     auth_methods: %w(publickey),
+#     verify_host_key: :secure
+#   }
+
+# config/deploy/production.rb
+
+# Local deployment - run everything on this same machine (no remote SSH)
+role :app, %w{localhost}
+role :web, %w{localhost}
+role :db,  %w{localhost}, primary: true
+
+set :ssh_options, {}  # no SSH needed
+set :deploy_via, :copy  # or :remote_cache if you prefer git clone locally
+set :use_sudo, false
+set :rbenv_ruby, '3.1.6'
