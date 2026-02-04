@@ -1,0 +1,56 @@
+current directory: /home/ec2-user/cdp_web_web_aws_deploy_task/vendor/bundle/ruby/3.1.0/gems/puma-4.3.12/ext/puma_http11
+/home/ec2-user/.rbenv/versions/3.1.6/bin/ruby -I /home/ec2-user/.rbenv/versions/3.1.6/lib/ruby/3.1.0 extconf.rb
+checking for BIO_read() in -lcrypto... yes
+checking for SSL_CTX_new() in -lssl... yes
+checking for openssl/bio.h... yes
+checking for DTLS_method() in openssl/ssl.h... yes
+checking for TLS_server_method() in openssl/ssl.h... yes
+checking for SSL_CTX_set_min_proto_version in openssl/ssl.h... yes
+checking for Random.bytes... yes
+creating Makefile
+
+current directory: /home/ec2-user/cdp_web_web_aws_deploy_task/vendor/bundle/ruby/3.1.0/gems/puma-4.3.12/ext/puma_http11
+make DESTDIR\= sitearchdir\=./.gem.20260204-137421-9xylxx sitelibdir\=./.gem.20260204-137421-9xylxx clean
+
+current directory: /home/ec2-user/cdp_web_web_aws_deploy_task/vendor/bundle/ruby/3.1.0/gems/puma-4.3.12/ext/puma_http11
+make DESTDIR\= sitearchdir\=./.gem.20260204-137421-9xylxx sitelibdir\=./.gem.20260204-137421-9xylxx
+compiling http11_parser.c
+compiling io_buffer.c
+compiling mini_ssl.c
+mini_ssl.c: In function ‘get_dh2048’:
+mini_ssl.c:111:3: warning: ‘DH_new’ is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  111 |   dh = DH_new();
+      |   ^~
+In file included from /usr/include/openssl/dsa.h:31,
+                 from /usr/include/openssl/x509.h:37,
+                 from /usr/include/openssl/ssl.h:32,
+                 from mini_ssl.c:15:
+/usr/include/openssl/dh.h:206:27: note: declared here
+  206 | OSSL_DEPRECATEDIN_3_0 DH *DH_new(void);
+      |                           ^~~~~~
+mini_ssl.c:125:3: warning: ‘DH_set0_pqg’ is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  125 |   if (p == NULL || g == NULL || !DH_set0_pqg(dh, p, NULL, g)) {
+      |   ^~
+In file included from /usr/include/openssl/dsa.h:31,
+                 from /usr/include/openssl/x509.h:37,
+                 from /usr/include/openssl/ssl.h:32,
+                 from mini_ssl.c:15:
+/usr/include/openssl/dh.h:262:27: note: declared here
+  262 | OSSL_DEPRECATEDIN_3_0 int DH_set0_pqg(DH *dh, BIGNUM *p, BIGNUM *q, BIGNUM *g);
+      |                           ^~~~~~~~~~~
+mini_ssl.c:126:5: warning: ‘DH_free’ is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  126 |     DH_free(dh);
+      |     ^~~~~~~
+In file included from /usr/include/openssl/dsa.h:31,
+                 from /usr/include/openssl/x509.h:37,
+                 from /usr/include/openssl/ssl.h:32,
+                 from mini_ssl.c:15:
+/usr/include/openssl/dh.h:207:28: note: declared here
+  207 | OSSL_DEPRECATEDIN_3_0 void DH_free(DH *dh);
+      |                            ^~~~~~~
+compiling puma_http11.c
+linking shared-object puma/puma_http11.so
+
+current directory: /home/ec2-user/cdp_web_web_aws_deploy_task/vendor/bundle/ruby/3.1.0/gems/puma-4.3.12/ext/puma_http11
+make DESTDIR\= sitearchdir\=./.gem.20260204-137421-9xylxx sitelibdir\=./.gem.20260204-137421-9xylxx install
+/usr/bin/install -c -m 0755 puma_http11.so ./.gem.20260204-137421-9xylxx/puma
