@@ -73,12 +73,23 @@
 
 # config/deploy/production.rb
 
-# Local deployment - run everything on this same machine (no remote SSH)
+# config/deploy/production.rb
+
+# Local deployment - no SSH, run everything directly on this machine
+set :format, :pretty
+set :log_level, :debug
+
+# Define roles as local
 role :app, %w{localhost}
 role :web, %w{localhost}
 role :db,  %w{localhost}, primary: true
 
-set :ssh_options, {}  # no SSH needed
-set :deploy_via, :copy  # or :remote_cache if you prefer git clone locally
+# Disable SSH completely for localhost
+set :ssh_options, nil
+set :pty, false
+
+# Tell SSHKit to use local backend instead of netssh
+SSHKit.config.backend = SSHKit::Backend::Local
+
+# Optional: ensure no remote connection attempts
 set :use_sudo, false
-set :rbenv_ruby, '3.1.6'
