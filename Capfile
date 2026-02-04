@@ -1,4 +1,6 @@
 # Load DSL and set up stages
+require 'SSHKit'
+SSHKit.config.backend = SSHKit::Backend::Local 
 require "capistrano/setup"
 
 # Include default deployment tasks
