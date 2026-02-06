@@ -1,6 +1,6 @@
 # Load DSL and set up stages
-require 'SSHKit'
-SSHKit.config.backend = SSHKit::Backend::Local 
+require 'sshkit'
+require 'sshkit/backends/local'
 require "capistrano/setup"
 
 # Include default deployment tasks
@@ -29,7 +29,7 @@ install_plugin Capistrano::SCM::Git
 #   https://github.com/capistrano/passenger
 #
 # require "capistrano/rvm"
-require "capistrano/rbenv"
+# require "capistrano/rbenv"
 require "capistrano/rails"
 require "capistrano/bundler"
 # require "capistrano/rails/assets"

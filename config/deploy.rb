@@ -46,7 +46,7 @@ lock "~> 3.20.0"
 
 # Default value for keep_releases is 5
 # set :keep_releases, 5
-
+ 
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
 
@@ -54,7 +54,7 @@ lock "~> 3.20.0"
 # config/deploy.rb
 
 set :application, 'cdp_web_web_aws_deploy_task'
-set :repo_url, '.'  # use local repo (current directory)
+set :repo_url, 'https://github.com/Fanon-hub/cdp_web_web_aws_deploy_task.git' 
 set :deploy_to, '/home/ec2-user/cdp_web_web_aws_deploy_task'
 
 set :rbenv_type, :user

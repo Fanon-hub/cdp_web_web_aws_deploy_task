@@ -24,6 +24,8 @@ gem 'jbuilder', '~> 2.7'
 
 gem 'concurrent-ruby', '1.3.4'
 
+gem "aws-sdk-s3", require: false
+
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'
 
@@ -45,7 +47,7 @@ group :development do
   gem 'capistrano-rails', '~> 1.6', require: false
   gem 'capistrano-bundler', require: false
   gem 'capistrano-rbenv', require: false   # since you use rbenv
-  # gem 'capistrano3-puma'   # if switching to Puma later, but task wants Unicorn
+  gem 'capistrano3-puma'   # if switching to Puma later, but task wants Unicorn
 end
 
 group :test do
@@ -56,9 +58,9 @@ group :test do
   gem 'webdrivers'
 end
 
-group :production do
-  gem 'unicorn', '~> 6.1'
-end
+# group :production do
+  # gem 'unicorn', '~> 6.1'
+# end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
