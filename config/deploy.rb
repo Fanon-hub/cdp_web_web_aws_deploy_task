@@ -1,4 +1,3 @@
-# config/deploy.rb
 lock "~> 3.20.0"
 
 set :application, 'cdp_web_web_aws_deploy_task'
@@ -48,4 +47,12 @@ set :default_env, -> {
     end
   end
   env
+}
+
+set :ssh_options, {
+  keys: %w(C:/Users/DELL/Downloads/Ruby-assign.pem),   
+  forward_agent: false,
+  auth_methods: %w(publickey),
+  user: 'ec2-user',
+  port: 22   
 }
