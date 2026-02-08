@@ -30,14 +30,22 @@ set :log_level,     :info
 set :pty,           true
 set :use_sudo,      false
 
-# Load production ENV vars from linked file
+
+# Load production ENV vars from shared .env.production (if exists)
 set :default_env, -> {
   env = {}
-  if test("[ -f #{shared_path}/config/.env.production ]")
-    capture(:cat, "#{shared_path}/config/.env.production").lines.each do |line|
-      key, value = line.strip.split('=', 2)
-      env[key] = value if key && value
+  on roles(:app) do
+    within shared_path do
+      if test :test, "-f config/.env.production"
+        capture(:cat, "config/.env.production").lines.each do |line|
+          line.strip!
+          next if line.empty? || line.start_with?('#')
+          key, *value_parts = line.split('=', 2)
+          value = value_parts.join('=') if value_parts.any?
+          env[key] = value.strip if key && value
+        end
+      end
     end
   end
   env
-} 
+}
