@@ -29,3 +29,15 @@ set :format,        :airbrussh
 set :log_level,     :info
 set :pty,           true
 set :use_sudo,      false
+
+# Load production ENV vars from linked file
+set :default_env, -> {
+  env = {}
+  if test("[ -f #{shared_path}/config/.env.production ]")
+    capture(:cat, "#{shared_path}/config/.env.production").lines.each do |line|
+      key, value = line.strip.split('=', 2)
+      env[key] = value if key && value
+    end
+  end
+  env
+} 
