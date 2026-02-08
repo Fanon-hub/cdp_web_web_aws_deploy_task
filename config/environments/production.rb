@@ -23,7 +23,10 @@ Rails.application.configure do
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
   # Compress CSS using a preprocessor.
-  config.assets.css_compressor = nil 
+  config.assets.css_compressor = nil
+
+  # Skip automatic yarn/npm install during assets:precompile (we run it manually)
+  config.cssbundling_skip_install = true
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
@@ -109,4 +112,20 @@ Rails.application.configure do
   # config.active_record.database_selector = { delay: 2.seconds }
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
+
+  # Prevent Sprockets from loading SassC processor (we use cssbundling-rails + Dart Sass)
+  # (already set above as nil)
+
+  # Unregister legacy Sass processors to avoid autoload crash
+  Rails.application.config.assets.configure do |env|
+    if defined?(Sprockets::SasscProcessor)
+      env.unregister_preprocessor 'text/scss', Sprockets::SasscProcessor
+      env.unregister_preprocessor 'text/css',  Sprockets::SasscProcessor
+    end
+
+    if defined?(Sprockets::SassProcessor)
+      env.unregister_preprocessor 'text/scss', Sprockets::SassProcessor
+    end
+  end
+
 end
