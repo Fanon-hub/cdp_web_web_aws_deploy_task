@@ -1,7 +1,7 @@
 lock "~> 3.20.0"
 
 set :application, 'cdp_web_web_aws_deploy_task'
-set :repo_url,    'https://github.com/Fanon-hub/cdp_web_web_aws_deploy_task.git'
+set :repo_url,    'git@github.com:Fanon-hub/cdp_web_web_aws_deploy_task.git'
 set :branch,      'master'   # or 'main' if that's your default branch
 
 set :deploy_to,   '/home/ec2-user/cdp_web_web_aws_deploy_task'
