@@ -50,9 +50,10 @@ set :default_env, -> {
 }
 
 set :ssh_options, {
-  keys: %w(C:/Users/DELL/Downloads/Ruby-assign.pem),   
+  keys:     ['C:\\Users\\DELL\\Downloads\\Ruby-assign.pem'],  # or 'C:/Users/DELL/Downloads/Ruby-assign.pem'
   forward_agent: false,
-  auth_methods: %w(publickey),
-  user: 'ec2-user',
-  port: 22   
+  auth_methods: %w[publickey],
+  verify_host_key: :secure,  # or :accept_new to auto-add if first time
+  timeout: 15,
+  verbose: :debug   # ← This is crucial — will print Offering public key etc.
 }

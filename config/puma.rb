@@ -10,7 +10,15 @@ threads min_threads_count, max_threads_count
 
 # Specifies the `port` that Puma will listen on to receive requests; default is 3000.
 #
-port        ENV.fetch("PORT") { 3000 }
+if ENV.fetch("RAILS_ENV") == "production"
+  bind "unix:///home/ec2-user/cdp_web_web_aws_deploy_task/shared/tmp/sockets/puma.sock?unmask=007"
+  pidfile "/home/ec2-user/cdp_web_web_aws_deploy_task/shared/tmp/pids/puma.pid"
+  state_path "/home/ec2-user/cdp_web_web_aws_deploy_task/shared/tmp/pids/puma.state"
+  stdout_redirect "/home/ec2-user/cdp_web_web_aws_deploy_task/shared/log/puma.stdout.log",
+                  "/home/ec2-user/cdp_web_web_aws_deploy_task/shared/log/puma.stderr.log",
+                  true
+end
+
 
 # Specifies the `environment` that Puma will run in.
 #
@@ -36,3 +44,6 @@ pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
 
 # Allow puma to be restarted by `rails restart` command.
 plugin :tmp_restart
+
+
+
