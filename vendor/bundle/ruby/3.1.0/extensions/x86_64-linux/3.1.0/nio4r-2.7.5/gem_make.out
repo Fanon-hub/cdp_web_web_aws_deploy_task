@@ -1,0 +1,32 @@
+current directory: /home/ec2-user/cdp_web_web_aws_deploy_task/vendor/bundle/ruby/3.1.0/gems/nio4r-2.7.5/ext/nio4r
+/home/ec2-user/.rbenv/versions/3.1.6/bin/ruby -I /home/ec2-user/.rbenv/versions/3.1.6/lib/ruby/3.1.0 extconf.rb
+checking for unistd.h... yes
+checking for rb_io_descriptor()... yes
+checking for linux/aio_abi.h... yes
+checking for linux/io_uring.h... yes
+checking for sys/select.h... yes
+checking for port_event_t in poll.h... no
+checking for sys/epoll.h... yes
+checking for sys/event.h... no
+checking for port_event_t in port.h... no
+checking for sys/resource.h... yes
+creating Makefile
+
+current directory: /home/ec2-user/cdp_web_web_aws_deploy_task/vendor/bundle/ruby/3.1.0/gems/nio4r-2.7.5/ext/nio4r
+make DESTDIR\= sitearchdir\=./.gem.20260204-137421-nv6b4 sitelibdir\=./.gem.20260204-137421-nv6b4 clean
+
+current directory: /home/ec2-user/cdp_web_web_aws_deploy_task/vendor/bundle/ruby/3.1.0/gems/nio4r-2.7.5/ext/nio4r
+make DESTDIR\= sitearchdir\=./.gem.20260204-137421-nv6b4 sitelibdir\=./.gem.20260204-137421-nv6b4
+compiling bytebuffer.c
+compiling monitor.c
+compiling nio4r_ext.c
+In file included from nio4r_ext.c:6:
+../libev/ev.c:2136:31: warning: ‘ev_default_loop_ptr’ initialized and declared ‘extern’
+ 2136 |   EV_API_DECL struct ev_loop *ev_default_loop_ptr = 0; /* needs to be initialised to make it a definition despite extern */
+      |                               ^~~~~~~~~~~~~~~~~~~
+compiling selector.c
+linking shared-object nio4r_ext.so
+
+current directory: /home/ec2-user/cdp_web_web_aws_deploy_task/vendor/bundle/ruby/3.1.0/gems/nio4r-2.7.5/ext/nio4r
+make DESTDIR\= sitearchdir\=./.gem.20260204-137421-nv6b4 sitelibdir\=./.gem.20260204-137421-nv6b4 install
+/usr/bin/install -c -m 0755 nio4r_ext.so ./.gem.20260204-137421-nv6b4

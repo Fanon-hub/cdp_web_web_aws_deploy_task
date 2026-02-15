@@ -10,10 +10,18 @@
   <%= @blog.content %>
 </p>
 
-<p>
-  <strong>Thumbnail:</strong>
-  <%= image_tag @blog.thumbnail.variant(resize_to_limit: [800, 800]) %>
-</p>
+<% if @blog.thumbnail.attached? %>
+  <p>
+    <strong>Thumbnail:</strong>
+    <%# if variant generation fails (missing ImageMagick/permissions) fall back to original blob %>
+    <% begin %>
+      <%= image_tag @blog.thumbnail.variant(resize_to_limit: [800, 800]) %>
+    <% rescue => e %>
+      <% Rails.logger.warn "failed to generate thumbnail variant: \\#{e.message}" %>
+      <%= image_tag url_for(@blog.thumbnail) %>
+    <% end %>
+  </p>
+<% end %>
 
 <%= link_to 'Edit', edit_blog_path(@blog) %> |
 <%= link_to 'Back', blogs_path %>

@@ -1,0 +1,34 @@
+# sample nginx configuration for proxying to unicorn
+# place this on the server under /etc/nginx/sites-available and symlink to sites-enabled
+
+upstream app_server {
+  # if using unix socket
+  server unix:/tmp/unicorn.sock fail_timeout=0;
+  # or tcp fallback
+  # server 127.0.0.1:8080;
+}
+
+server {
+  listen 80;
+  server_name _;   # change to your public IP or domain
+
+  root <%= fetch(:deploy_to) %>/current/public;
+  try_files $uri/index.html $uri @app;
+
+  location @app {
+    proxy_pass http://app_server;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $host;
+    proxy_redirect off;
+  }
+
+  # serve static files directly
+  location ~ ^/(assets|packs|system)/ {
+    expires max;
+    add_header Cache-Control public;
+  }
+
+  error_page 500 502 503 504 /500.html;
+  client_max_body_size 4G;
+  keepalive_timeout 10;
+}

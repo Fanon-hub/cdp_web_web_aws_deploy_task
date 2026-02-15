@@ -17,7 +17,15 @@
       <tr>
         <td><%= blog.title %></td>
         <td><%= blog.content %></td>
-        <td><%= image_tag blog.thumbnail.variant(resize_to_limit: [200, 200]) if blog.thumbnail.present? %></td>
+        <td>
+          <% if blog.thumbnail.attached? %>
+            <% begin %>
+              <%= image_tag blog.thumbnail.variant(resize_to_limit: [200, 200]) %>
+            <% rescue => e %>
+              <%= image_tag url_for(blog.thumbnail) %>
+            <% end %>
+          <% end %>
+        </td>
         <td><%= link_to 'Show', blog %></td>
         <td><%= link_to 'Edit', edit_blog_path(blog) %></td>
         <td><%= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' } %></td>

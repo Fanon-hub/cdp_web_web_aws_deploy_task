@@ -1,0 +1,61 @@
+have_func: checking for rb_hash_clear() in ruby.h... -------------------- yes
+
+LD_LIBRARY_PATH=.:/home/ec2-user/.rbenv/versions/3.1.6/lib "gcc -o conftest -I/home/ec2-user/.rbenv/versions/3.1.6/include/ruby-3.1.0/x86_64-linux -I/home/ec2-user/.rbenv/versions/3.1.6/include/ruby-3.1.0/ruby/backward -I/home/ec2-user/.rbenv/versions/3.1.6/include/ruby-3.1.0 -I.    -std=gnu17  -fPIC conftest.c  -L. -L/home/ec2-user/.rbenv/versions/3.1.6/lib -Wl,-rpath,/home/ec2-user/.rbenv/versions/3.1.6/lib -L. -fstack-protector-strong -rdynamic -Wl,-export-dynamic -Wl,--no-as-needed     -Wl,-rpath,/home/ec2-user/.rbenv/versions/3.1.6/lib -L/home/ec2-user/.rbenv/versions/3.1.6/lib -lruby  -lm  -lc"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main(int argc, char **argv)
+4: {
+5:   return !!argv[argc];
+6: }
+/* end */
+
+LD_LIBRARY_PATH=.:/home/ec2-user/.rbenv/versions/3.1.6/lib "gcc -o conftest -I/home/ec2-user/.rbenv/versions/3.1.6/include/ruby-3.1.0/x86_64-linux -I/home/ec2-user/.rbenv/versions/3.1.6/include/ruby-3.1.0/ruby/backward -I/home/ec2-user/.rbenv/versions/3.1.6/include/ruby-3.1.0 -I.    -std=gnu17  -fPIC conftest.c  -L. -L/home/ec2-user/.rbenv/versions/3.1.6/lib -Wl,-rpath,/home/ec2-user/.rbenv/versions/3.1.6/lib -L. -fstack-protector-strong -rdynamic -Wl,-export-dynamic -Wl,--no-as-needed     -Wl,-rpath,/home/ec2-user/.rbenv/versions/3.1.6/lib -L/home/ec2-user/.rbenv/versions/3.1.6/lib -lruby  -lm  -lc"
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: #include <ruby.h>
+ 4: 
+ 5: /*top*/
+ 6: extern int t(void);
+ 7: int main(int argc, char **argv)
+ 8: {
+ 9:   if (argc > 1000000) {
+10:     int (* volatile tp)(void)=(int (*)(void))&t;
+11:     printf("%d", (*tp)());
+12:   }
+13: 
+14:   return !!argv[argc];
+15: }
+16: int t(void) { void ((*volatile p)()); p = (void ((*)()))rb_hash_clear; return !p; }
+/* end */
+
+--------------------
+
+have_func: checking for epoll_create1() in sys/epoll.h... -------------------- yes
+
+LD_LIBRARY_PATH=.:/home/ec2-user/.rbenv/versions/3.1.6/lib "gcc -o conftest -I/home/ec2-user/.rbenv/versions/3.1.6/include/ruby-3.1.0/x86_64-linux -I/home/ec2-user/.rbenv/versions/3.1.6/include/ruby-3.1.0/ruby/backward -I/home/ec2-user/.rbenv/versions/3.1.6/include/ruby-3.1.0 -I.    -DSTR_UMINUS_DEDUPE=1  -DHASH_ASET_DEDUPE=1  -std=gnu17  -fPIC conftest.c  -L. -L/home/ec2-user/.rbenv/versions/3.1.6/lib -Wl,-rpath,/home/ec2-user/.rbenv/versions/3.1.6/lib -L. -fstack-protector-strong -rdynamic -Wl,-export-dynamic -Wl,--no-as-needed     -Wl,-rpath,/home/ec2-user/.rbenv/versions/3.1.6/lib -L/home/ec2-user/.rbenv/versions/3.1.6/lib -lruby  -lm  -lc"
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: #include <sys/epoll.h>
+ 4: 
+ 5: /*top*/
+ 6: extern int t(void);
+ 7: int main(int argc, char **argv)
+ 8: {
+ 9:   if (argc > 1000000) {
+10:     int (* volatile tp)(void)=(int (*)(void))&t;
+11:     printf("%d", (*tp)());
+12:   }
+13: 
+14:   return !!argv[argc];
+15: }
+16: int t(void) { void ((*volatile p)()); p = (void ((*)()))epoll_create1; return !p; }
+/* end */
+
+--------------------
+

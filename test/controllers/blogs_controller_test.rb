@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class BlogsControllerTest < ActionDispatch::IntegrationTest
+  include ActionDispatch::TestProcess::FixtureFile
+
   setup do
     @blog = blogs(:one)
   end
@@ -17,10 +19,12 @@ class BlogsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create blog" do
     assert_difference('Blog.count') do
-      post blogs_url, params: { blog: { content: @blog.content, title: @blog.title } }
+      post blogs_url, params: { blog: { content: @blog.content, title: @blog.title,
+                                       thumbnail: fixture_file_upload('files/sample.png', 'image/png') } }
     end
 
     assert_redirected_to blog_url(Blog.last)
+    assert Blog.last.thumbnail.attached?
   end
 
   test "should show blog" do
@@ -34,8 +38,11 @@ class BlogsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update blog" do
-    patch blog_url(@blog), params: { blog: { content: @blog.content, title: @blog.title } }
+    patch blog_url(@blog), params: { blog: { content: @blog.content, title: @blog.title,
+                                             thumbnail: fixture_file_upload('files/sample.png', 'image/png') } }
     assert_redirected_to blog_url(@blog)
+    @blog.reload
+    assert @blog.thumbnail.attached?
   end
 
   test "should destroy blog" do

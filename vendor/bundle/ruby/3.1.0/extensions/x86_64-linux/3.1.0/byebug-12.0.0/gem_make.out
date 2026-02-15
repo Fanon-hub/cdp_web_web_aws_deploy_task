@@ -1,0 +1,19 @@
+current directory: /home/ec2-user/cdp_web_web_aws_deploy_task/vendor/bundle/ruby/3.1.0/gems/byebug-12.0.0/ext/byebug
+/home/ec2-user/.rbenv/versions/3.1.6/bin/ruby -I /home/ec2-user/.rbenv/versions/3.1.6/lib/ruby/3.1.0 extconf.rb
+creating Makefile
+
+current directory: /home/ec2-user/cdp_web_web_aws_deploy_task/vendor/bundle/ruby/3.1.0/gems/byebug-12.0.0/ext/byebug
+make DESTDIR\= sitearchdir\=./.gem.20260204-137421-1dddzw sitelibdir\=./.gem.20260204-137421-1dddzw clean
+
+current directory: /home/ec2-user/cdp_web_web_aws_deploy_task/vendor/bundle/ruby/3.1.0/gems/byebug-12.0.0/ext/byebug
+make DESTDIR\= sitearchdir\=./.gem.20260204-137421-1dddzw sitelibdir\=./.gem.20260204-137421-1dddzw
+compiling breakpoint.c
+compiling byebug.c
+compiling context.c
+compiling locker.c
+compiling threads.c
+linking shared-object byebug/byebug.so
+
+current directory: /home/ec2-user/cdp_web_web_aws_deploy_task/vendor/bundle/ruby/3.1.0/gems/byebug-12.0.0/ext/byebug
+make DESTDIR\= sitearchdir\=./.gem.20260204-137421-1dddzw sitelibdir\=./.gem.20260204-137421-1dddzw install
+/usr/bin/install -c -m 0755 byebug.so ./.gem.20260204-137421-1dddzw/byebug
