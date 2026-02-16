@@ -8,7 +8,6 @@ ruby '3.1.6'
 gem 'rails', '~> 6.1.7'
 gem 'pg', '~> 1.1'  
 
-gem 'logger'
 # Asset pipeline
 gem 'cssbundling-rails'
 gem 'jbuilder', '~> 2.7'
@@ -45,7 +44,7 @@ group :test do
 end
 
 group :production do
-  gem 'unicorn'  # Only for Linux production server
+  gem 'unicorn'  
 end
 
 # Windows-specific

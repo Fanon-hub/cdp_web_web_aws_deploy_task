@@ -299,7 +299,6 @@ DEPENDENCIES
   image_processing (~> 1.2)
   jbuilder (~> 2.7)
   listen (~> 3.3)
-  logger
   pg (~> 1.1)
   rails (~> 6.1.7)
   selenium-webdriver (>= 4.0.0.rc1)
